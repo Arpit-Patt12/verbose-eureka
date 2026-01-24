@@ -1,0 +1,957 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arpit | AI & ML Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        /* Your palette */
+        --deep-navy: #091f46;
+        --blue-main: #37729c;
+        --blue-soft: #7699ae;
+        --light-cream: #e9e4de;
+        --sun-gold: #efbf6a;
+        --earth-brown: #a55d35;
+
+        /* Derived tokens */
+        --bg: var(--deep-navy);
+        --bg-alt: #0d2442;
+        --card: rgba(9, 31, 70, 0.96);
+        --accent: var(--sun-gold);
+        --accent-soft: rgba(239, 191, 106, 0.18);
+        --text-main: #f9fafb;
+        --text-muted: #d1d5db;
+        --border-soft: rgba(230, 228, 222, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+          circle at top,
+          var(--blue-soft) 0,
+          var(--deep-navy) 45%,
+          #020617 100%
+        );
+        color: var(--text-main);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: linear-gradient(
+          to bottom,
+          rgba(9, 31, 70, 0.98),
+          rgba(9, 31, 70, 0.9),
+          transparent
+        );
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border-soft);
+      }
+      .nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+      }
+      .logo {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        background: radial-gradient(
+          circle at 30% 20%,
+          var(--sun-gold),
+          var(--blue-main) 55%,
+          var(--earth-brown)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        box-shadow: 0 0 25px rgba(239, 191, 106, 0.8);
+      }
+      .nav-title-main {
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .nav-title-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.25rem;
+        font-size: 0.85rem;
+      }
+      .nav-links a {
+        color: var(--text-muted);
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(
+          to right,
+          var(--sun-gold),
+          var(--blue-main)
+        );
+        border-radius: 999px;
+        transition: width 0.2s ease-out;
+      }
+      .nav-links a:hover {
+        color: #f9fafb;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.5rem 1.5rem 3rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+        gap: 2.5rem;
+        align-items: center;
+        padding: 2.25rem 1.5rem;
+        margin-top: 0.75rem;
+        border-radius: 1.75rem;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(55, 114, 156, 0.25),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(239, 191, 106, 0.28),
+            transparent 60%
+          ),
+          linear-gradient(135deg, rgba(9, 31, 70, 0.98), rgba(9, 31, 70, 0.95));
+        border: 1px solid var(--border-soft);
+        box-shadow:
+          0 40px 80px rgba(4, 7, 16, 0.95),
+          0 0 0 1px rgba(9, 31, 70, 1);
+      }
+      .hero-eyebrow {
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--sun-gold);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 0.75rem;
+      }
+      .hero-eyebrow-badge {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--sun-gold);
+        box-shadow: 0 0 0 3px rgba(239, 191, 106, 0.4);
+      }
+      .hero-title {
+        font-size: 2.25rem;
+        line-height: 1.15;
+        margin: 0 0 0.6rem;
+      }
+      .hero-title span {
+        background: linear-gradient(
+          to right,
+          var(--sun-gold),
+          var(--blue-soft)
+        );
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      .hero-subtitle {
+        font-size: 1.02rem;
+        color: var(--light-cream);
+        max-width: 32rem;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 1.5rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.6rem 1.1rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s ease-out;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: linear-gradient(
+          to right,
+          var(--sun-gold),
+          var(--earth-brown)
+        );
+        color: #111827;
+        box-shadow: 0 18px 40px rgba(239, 191, 106, 0.5);
+      }
+      .btn-primary:hover {
+        transform: translateY(-1px) scale(1.01);
+        box-shadow: 0 22px 55px rgba(239, 191, 106, 0.6);
+      }
+      .btn-ghost {
+        background: rgba(9, 31, 70, 0.95);
+        color: var(--light-cream);
+        border-color: rgba(233, 228, 222, 0.6);
+      }
+      .btn-ghost:hover {
+        color: #ffffff;
+        border-color: rgba(233, 228, 222, 0.9);
+        background: rgba(9, 31, 70, 1);
+      }
+
+      /* About-right profile photo */
+      .hero-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .profile-card {
+        width: 260px;
+        border-radius: 1.5rem;
+        background: rgba(9, 31, 70, 0.98);
+        border: 1px solid rgba(233, 228, 222, 0.5);
+        box-shadow: 0 24px 55px rgba(0, 0, 0, 0.7);
+        overflow: hidden;
+      }
+      .profile-photo {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        display: block;
+      }
+      .profile-meta {
+        padding: 0.75rem 0.9rem 0.85rem;
+        font-size: 0.8rem;
+        color: var(--light-cream);
+      }
+      .profile-meta-title {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .profile-meta-sub {
+        color: var(--text-muted);
+        font-size: 0.78rem;
+      }
+
+      section {
+        margin-top: 2.5rem;
+      }
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 1.1rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+      .section-kicker {
+        font-size: 0.8rem;
+        color: var(--light-cream);
+      }
+      .section-title span {
+        background: linear-gradient(
+          to right,
+          var(--sun-gold),
+          var(--blue-soft)
+        );
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+      .grid.two {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .card {
+        position: relative;
+        padding: 1rem 1rem 0.9rem;
+        border-radius: 1rem;
+        background: var(--card);
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 18px 40px rgba(3, 7, 18, 0.95);
+      }
+      .card-badge {
+        font-size: 0.7rem;
+        color: var(--sun-gold);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        margin-bottom: 0.3rem;
+      }
+      .card-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+      .card-meta {
+        font-size: 0.8rem;
+        color: var(--light-cream);
+        margin-bottom: 0.5rem;
+      }
+      .card-body {
+        font-size: 0.83rem;
+        color: var(--text-main);
+      }
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.6rem;
+      }
+      .card-tag {
+        font-size: 0.7rem;
+        padding: 0.18rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(9, 31, 70, 0.9);
+        border: 1px solid rgba(233, 228, 222, 0.5);
+      }
+
+      /* Tech chips */
+      .tech-chip {
+        font-size: 0.78rem;
+        padding: 0.28rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(233, 228, 222, 0.5);
+        background: rgba(9, 31, 70, 0.8);
+        color: var(--light-cream);
+      }
+      .tech-chip.highlight {
+        border-color: rgba(239, 191, 106, 0.9);
+        background: rgba(239, 191, 106, 0.18);
+        color: #fff7dd;
+        font-weight: 600;
+      }
+      .tech-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-top: 0.6rem;
+      }
+
+      /* Timeline */
+      .timeline {
+        border-left: 1px dashed rgba(233, 228, 222, 0.6);
+        padding-left: 1.1rem;
+        margin-left: 0.6rem;
+      }
+      .timeline-item {
+        position: relative;
+        margin-bottom: 1.1rem;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -1.7rem;
+        top: 0.25rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--sun-gold);
+        box-shadow: 0 0 0 4px rgba(239, 191, 106, 0.35);
+      }
+      .timeline-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .timeline-meta {
+        font-size: 0.8rem;
+        color: var(--light-cream);
+        margin-bottom: 0.3rem;
+      }
+      .timeline-body {
+        font-size: 0.82rem;
+        color: var(--text-main);
+      }
+
+      /* Contact section */
+      .contact {
+        display: grid;
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+        gap: 1.4rem;
+      }
+      .contact-card {
+        background: rgba(9, 31, 70, 0.98);
+        border-radius: 1.1rem;
+        padding: 1rem;
+        border: 1px solid rgba(233, 228, 222, 0.55);
+      }
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0.4rem 0 0;
+        font-size: 0.85rem;
+      }
+      .contact-list li {
+        margin-bottom: 0.4rem;
+        color: var(--text-main);
+      }
+      .contact-label {
+        display: inline-block;
+        min-width: 4rem;
+        font-size: 0.78rem;
+        color: var(--light-cream);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .contact-chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.4rem;
+      }
+      .contact-chip {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: rgba(9, 31, 70, 0.9);
+        border: 1px solid rgba(233, 228, 222, 0.5);
+        color: var(--light-cream);
+      }
+      .contact-chip a {
+        color: inherit;
+      }
+      .contact-form {
+        display: grid;
+        gap: 0.55rem;
+        font-size: 0.8rem;
+      }
+      .contact-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .contact-form span {
+        color: var(--light-cream);
+        font-size: 0.8rem;
+      }
+      input,
+      textarea {
+        border-radius: 0.7rem;
+        border: 1px solid rgba(233, 228, 222, 0.6);
+        background: rgba(9, 31, 70, 0.95);
+        color: var(--text-main);
+        padding: 0.45rem 0.6rem;
+        font-family: inherit;
+        font-size: 0.82rem;
+      }
+      input:focus,
+      textarea:focus {
+        outline: 1px solid var(--sun-gold);
+        border-color: rgba(239, 191, 106, 0.9);
+      }
+      textarea {
+        min-height: 80px;
+        resize: vertical;
+      }
+
+      footer {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1.25rem 1.5rem 2.5rem;
+        font-size: 0.75rem;
+        color: var(--light-cream);
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border-top: 1px solid rgba(15, 23, 42, 0.9);
+        margin-top: 2.25rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 0.75rem;
+      }
+      .footer-links a {
+        color: var(--light-cream);
+        font-size: 0.78rem;
+      }
+      .footer-links a:hover {
+        color: #ffffff;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 1.7rem 1.3rem;
+        }
+        .hero-right {
+          order: -1;
+        }
+        header .nav {
+          padding-inline: 1rem;
+        }
+        main {
+          padding-inline: 1rem;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          margin-top: 0.5rem;
+          padding: 1.4rem 1.1rem;
+        }
+        .section-header {
+          flex-direction: column;
+          gap: 0.25rem;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="nav-left">
+          <div class="logo">AP</div>
+          <div>
+            <div class="nav-title-main">
+              Arpit Pattanaik • AI &amp; ML Engineer
+            </div>
+            <div class="nav-title-sub">
+              CS undergrad · AI/ML · Data-driven products
+            </div>
+          </div>
+        </div>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ABOUT ME with full details + photo card on right -->
+      <section class="hero" id="about">
+        <div>
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-badge"></span>
+            About Me
+          </div>
+          <h1 class="hero-title">
+            Hi, I'm Arpit Pattanaik<br />
+            <span>crafting AI-first, data-driven products.</span>
+          </h1>
+          <p class="hero-subtitle">
+            I am a Computer Science Engineering student specializing in
+            Artificial Intelligence and Machine Learning. I enjoy turning ideas
+            into working systems – from data and models to clean APIs and usable
+            interfaces. Outside of work, you will usually find me reading books,
+            playing badminton, or exploring and experiencing new areas.
+          </p>
+
+          <ul class="contact-list" style="margin-top: 0.9rem">
+            <li><span class="contact-label">Name</span>Arpit Pattanaik</li>
+            <li>
+              <span class="contact-label">Email</span
+              ><a href="mailto:arpitpatt77@gmail.com">arpitpatt77@gmail.com</a>
+            </li>
+            <li>
+              <span class="contact-label">Phone</span
+              ><a href="tel:+917751847445">+91 77518 47445</a>
+            </li>
+            <li>
+              <span class="contact-label">Hobbies</span>Reading Books,
+              Badminton, Exploring and experiencing new areas
+            </li>
+          </ul>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <span>View my projects</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span>Get in touch</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="profile-card">
+            <img
+              class="profile-photo"
+              src="https://res.cloudinary.com/dekbu6lmt/image/upload/v1769253815/IMG_20260124_163411_1_rju31l.jpg"
+              alt="Profile photo of Arpit Pattanaik"
+            />
+            <div class="profile-meta">
+              <div class="profile-meta-title">Arpit Pattanaik</div>
+              <div class="profile-meta-sub">
+                AI/ML Enthusiast · CS Engineering · Loves books, badminton &amp;
+                exploring new places
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS with highlighted technologies -->
+      <section id="skills">
+        <div class="section-header">
+          <h2 class="section-title">Skills &amp; <span>Tech Stack</span></h2>
+          <div class="section-kicker">
+            Technologies I use to build AI-powered experiences
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-badge">Core skills</div>
+          <div class="card-body">
+            <p>
+              Strong foundations in AI/ML, Data Science, and modern web
+              development. I focus on designing robust ML pipelines, clean
+              architectures, and intuitive experiences that bring intelligent
+              features into real products.
+            </p>
+          </div>
+
+          <div class="tech-chip-row">
+            <span class="tech-chip highlight">Python</span>
+            <span class="tech-chip highlight">HTML</span>
+            <span class="tech-chip highlight">CSS</span>
+            <span class="tech-chip highlight">JavaScript</span>
+            <span class="tech-chip highlight">AWS</span>
+            <span class="tech-chip highlight">Data Science</span>
+            <span class="tech-chip highlight">Machine Learning</span>
+            <span class="tech-chip highlight">AI</span>
+            <span class="tech-chip">TypeScript</span>
+            <span class="tech-chip">Flask</span>
+            <span class="tech-chip">System Design</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS with images -->
+      <section id="projects">
+        <div class="section-header">
+          <h2 class="section-title">Selected <span>Projects</span></h2>
+          <div class="section-kicker">
+            Real work that combines AI, data, and web development
+          </div>
+        </div>
+
+        <div class="grid two">
+          <!-- Project 1 -->
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg"
+              alt="Dashboard style illustration representing AI web app"
+              style="
+                width: 100%;
+                height: 150px;
+                border-radius: 0.75rem;
+                object-fit: cover;
+                margin-bottom: 0.6rem;
+                border: 1px solid rgba(233, 228, 222, 0.4);
+              "
+            />
+            <div class="card-badge">AI / Web App</div>
+            <div class="card-title">AI-powered Web Application</div>
+            <div class="card-meta">Python · Flask · Machine Learning · AWS</div>
+            <div class="card-body">
+              End-to-end AI application where ML models are served through Flask
+              APIs and connected to a responsive web interface. Focused on clean
+              model packaging, inference performance, and cloud-friendly
+              deployment.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">Flask</span>
+              <span class="card-tag">Machine Learning</span>
+              <span class="card-tag">AWS</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg"
+              alt="Charts and graphs representing data analysis"
+              style="
+                width: 100%;
+                height: 150px;
+                border-radius: 0.75rem;
+                object-fit: cover;
+                margin-bottom: 0.6rem;
+                border: 1px solid rgba(233, 228, 222, 0.4);
+              "
+            />
+            <div class="card-badge">Data Science</div>
+            <div class="card-title">
+              Data Analysis &amp; Visualization Pipeline
+            </div>
+            <div class="card-meta">Python · Data Science</div>
+            <div class="card-body">
+              A data analysis workflow with cleaning, feature engineering, and
+              visualization steps to extract insights from real-world datasets,
+              emphasizing clarity, reproducibility, and communication of
+              results.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">Data Science</span>
+              <span class="card-tag">Analytics</span>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://images.pexels.com/photos/4974915/pexels-photo-4974915.jpeg"
+              alt="Frontend web UI mockup on a screen"
+              style="
+                width: 100%;
+                height: 150px;
+                border-radius: 0.75rem;
+                object-fit: cover;
+                margin-bottom: 0.6rem;
+                border: 1px solid rgba(233, 228, 222, 0.4);
+              "
+            />
+            <div class="card-badge">Web Dev</div>
+            <div class="card-title">Portfolio &amp; UI Experiments</div>
+            <div class="card-meta">HTML · CSS · JavaScript</div>
+            <div class="card-body">
+              Modern, responsive layouts and UI experiments, including this
+              portfolio, to explore animations, color systems, and clean
+              component structures for the web.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">HTML</span>
+              <span class="card-tag">CSS</span>
+              <span class="card-tag">JavaScript</span>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="card">
+            <img
+              class="project-image"
+              src="https://images.pexels.com/photos/2706379/pexels-photo-2706379.jpeg"
+              alt="Code editor representing competitive programming"
+              style="
+                width: 100%;
+                height: 150px;
+                border-radius: 0.75rem;
+                object-fit: cover;
+                margin-bottom: 0.6rem;
+                border: 1px solid rgba(233, 228, 222, 0.4);
+              "
+            />
+            <div class="card-badge">Competitive Programming</div>
+            <div class="card-title">Algorithmic Problem Solving</div>
+            <div class="card-meta">LeetCode · Python · C</div>
+            <div class="card-body">
+              A growing collection of LeetCode problems focused on algorithms
+              and data structures, showcasing problem-solving ability and clean,
+              well-documented solutions.
+            </div>
+            <div class="card-tags">
+              <span class="card-tag">Python</span>
+              <span class="card-tag">C</span>
+              <span class="card-tag">DS &amp; Algo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <div class="section-header">
+          <h2 class="section-title">Professional <span>Experience</span></h2>
+          <div class="section-kicker">
+            Hands-on roles applying AI, ML, and cloud skills
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">AI/ML Internship</div>
+            <div class="timeline-meta">
+              Central Tools and Training Centre · Completed
+            </div>
+            <div class="timeline-body">
+              Worked on practical AI/ML projects involving data handling, model
+              training, and deployment workflows, deepening understanding of how
+              to move models from experimentation into production.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-title">AWS Solution Architect Role</div>
+            <div class="timeline-meta">AWS · Completed</div>
+            <div class="timeline-body">
+              Hands-on exposure to AWS services and cloud architecture, with
+              focus on scalability, reliability, and cost optimization for
+              applications that need to run reliably at scale.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact">
+        <div class="section-header">
+          <h2 class="section-title"><span>Get In Touch</span></h2>
+          <div class="section-kicker">
+            Let's build something amazing together
+          </div>
+        </div>
+        <div class="contact">
+          <div class="contact-card">
+            <div class="card-badge">Direct Contact</div>
+            <ul class="contact-list">
+              <li>
+                <span class="contact-label">Email</span>
+                <a href="mailto:arpitpatt77@gmail.com">arpitpatt77@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-label">Phone</span>
+                <a href="tel:+917751847445">+91 77518 47445</a>
+              </li>
+            </ul>
+            <div class="card-body" style="margin-top: 0.6rem">
+              Open to internships, freelance projects, and full‑time roles in
+              AI/ML, Data Science, and software engineering.
+            </div>
+            <div class="contact-chip-row">
+              <span class="contact-chip">
+                <a
+                  href="https://www.linkedin.com/in/arpit-pattanaik-595801277"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </span>
+              <span class="contact-chip">
+                <a
+                  href="https://github.com/Arpit-Patt12"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="card-badge">Quick Message</div>
+            <form
+              class="contact-form"
+              onsubmit="
+                event.preventDefault();
+                alert(
+                  'Thanks for reaching out! Please email me directly at arpitpatt77@gmail.com or call +91 77518 47445.',
+                );
+              "
+            >
+              <label>
+                <span>Name</span>
+                <input type="text" placeholder="Your name" required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" placeholder="you@example.com" required />
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea
+                  placeholder="Tell me about the role, idea, or project..."
+                  required
+                ></textarea>
+              </label>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="width: max-content; margin-top: 0.3rem"
+              >
+                Send message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Arpit Pattanaik. All rights reserved.</div>
+      <div class="footer-links">
+        <a
+          href="https://www.linkedin.com/in/arpit-pattanaik-595801277"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a
+          href="https://github.com/Arpit-Patt12"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
