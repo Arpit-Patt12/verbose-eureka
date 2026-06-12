@@ -3,13 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Arpit | AI & ML Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
         /* Your palette */
@@ -34,10 +28,26 @@
         box-sizing: border-box;
         scroll-behavior: smooth;
       }
-      body{
-
-	
-}
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+          circle at top,
+          var(--blue-soft) 0,
+          var(--deep-navy) 45%,
+          #020617 100%
+        );
+        color: var(--text-main);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
       header {
         position: sticky;
         top: 0;
@@ -301,40 +311,49 @@
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       }
 
-      ..card{
+      .card {
+        position: relative;
+        padding: 1rem 1rem 0.9rem;
+        border-radius: 1rem;
+        background: var(--card);
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 18px 40px rgba(3, 7, 18, 0.95);
+      }
+      .card-badge {
+        font-size: 0.7rem;
+        color: var(--sun-gold);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        margin-bottom: 0.3rem;
+      }
+      .card-title {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+      .card-meta {
+        font-size: 0.8rem;
+        color: var(--light-cream);
+        margin-bottom: 0.5rem;
+      }
+      .card-body {
+        font-size: 0.83rem;
+        color: var(--text-main);
+      }
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-top: 0.6rem;
+      }
+      .card-tag {
+        font-size: 0.7rem;
+        padding: 0.18rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(9, 31, 70, 0.9);
+        border: 1px solid rgba(233, 228, 222, 0.5);
+      }
 
-position:relative;
-
-padding:1rem;
-
-border-radius:1.2rem;
-
-background:
-rgba(255,255,255,.04);
-
-backdrop-filter:
-blur(18px);
-
-border:
-1px solid rgba(255,255,255,.08);
-
-transition:
-all .35s ease;
-
-box-shadow:
-0 20px 50px rgba(0,0,0,.5);
-
-}
-
-.card:hover{
-
-transform:
-translateY(-10px);
-
-box-shadow:
-0 35px 90px rgba(0,0,0,.75);
-
-}
       /* Tech chips */
       .tech-chip {
         font-size: 0.78rem;
@@ -498,12 +517,9 @@ box-shadow:
 
       @media (max-width: 900px) {
         .hero {
-          position:relative;
-          overflow:hidden;
           grid-template-columns: 1fr;
           padding: 1.7rem 1.3rem;
         }
-	
         .hero-right {
           order: -1;
         }
@@ -621,7 +637,6 @@ box-shadow:
           </div>
         </div>
       </section>
-	
 
       <!-- SKILLS with highlighted technologies -->
       <section id="skills">
@@ -918,16 +933,23 @@ box-shadow:
     </main>
 
     <footer>
-
-    <div>
-    Built with HTML • CSS • JavaScript • Hosted on GitHub Pages
-    </div>
-
-    <div>
-    © <span id="year"></span> Arpit Pattanaik
-    </div>
-
+      <div>© <span id="year"></span> Arpit Pattanaik. All rights reserved.</div>
+      <div class="footer-links">
+        <a
+          href="https://www.linkedin.com/in/arpit-pattanaik-595801277"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a
+          href="https://github.com/Arpit-Patt12"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </div>
     </footer>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
